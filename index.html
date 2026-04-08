@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ken Sielecki — Portfolio</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Syne+Mono&family=DM+Sans:wght@300;400;500&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0c0c0a;
+  --surface: #141412;
+  --border: #252520;
+  --text: #e8e6df;
+  --muted: #6b6860;
+  --accent: #c8f060;
+  --accent2: #60c8f0;
+  --accent3: #f0a060;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ── HEADER ─────────────────────────────── */
+header {
+  padding: 80px 48px 64px;
+  max-width: 1100px;
+  margin: 0 auto;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: end;
+}
+
+.header-left h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(36px, 5vw, 58px);
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  line-height: 1.05;
+  margin-bottom: 16px;
+}
+
+.header-left h1 span {
+  color: var(--accent);
+}
+
+.header-left p {
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 300;
+  max-width: 480px;
+  line-height: 1.7;
+}
+
+.header-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.header-links a {
+  font-family: 'Syne Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  transition: color 0.2s;
+}
+
+.header-links a:hover { color: var(--accent); }
+
+/* ── NAV PILLS ───────────────────────────── */
+.nav-pills {
+  display: flex;
+  gap: 8px;
+  padding: 24px 48px;
+  max-width: 1100px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.pill {
+  font-family: 'Syne Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  color: var(--muted);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.pill:hover, .pill.active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(200, 240, 96, 0.06);
+}
+
+/* ── PROJECTS GRID ───────────────────────── */
+.projects {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 48px 80px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.25s, transform 0.25s;
+  cursor: default;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--card-accent, var(--accent));
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.card:hover {
+  border-color: #3a3a34;
+  transform: translateY(-2px);
+}
+
+.card:hover::before { opacity: 1; }
+
+.card-number {
+  font-family: 'Syne Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.12em;
+  margin-bottom: 20px;
+}
+
+.card-tag {
+  display: inline-block;
+  font-family: 'Syne Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  background: rgba(200, 240, 96, 0.1);
+  color: var(--accent);
+  border: 1px solid rgba(200, 240, 96, 0.2);
+}
+
+.card-tag.blue {
+  background: rgba(96, 200, 240, 0.1);
+  color: var(--accent2);
+  border-color: rgba(96, 200, 240, 0.2);
+}
+
+.card-tag.orange {
+  background: rgba(240, 160, 96, 0.1);
+  color: var(--accent3);
+  border-color: rgba(240, 160, 96, 0.2);
+}
+
+.card h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.card p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-bottom: 24px;
+}
+
+.card-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 28px;
+}
+
+.stack-item {
+  font-family: 'Syne Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: #4a4a44;
+  padding: 3px 8px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+.card-links {
+  display: flex;
+  gap: 12px;
+}
+
+.card-link {
+  font-family: 'Syne Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s;
+}
+
+.card-link:hover { color: var(--accent); }
+
+.card-link svg {
+  width: 13px; height: 13px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.card-link.primary {
+  background: rgba(200, 240, 96, 0.1);
+  border: 1px solid rgba(200, 240, 96, 0.25);
+  color: var(--accent);
+  padding: 6px 14px;
+  border-radius: 6px;
+}
+
+.card-link.primary:hover {
+  background: rgba(200, 240, 96, 0.18);
+}
+
+/* ── METRIC STRIP ────────────────────────── */
+.metrics {
+  display: flex;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 12px 0 24px;
+}
+
+.metric {
+  flex: 1;
+  padding: 12px 16px;
+  border-right: 1px solid var(--border);
+  text-align: center;
+}
+
+.metric:last-child { border-right: none; }
+
+.metric-val {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.5px;
+}
+
+.metric-lbl {
+  font-family: 'Syne Mono', monospace;
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* ── FOOTER ──────────────────────────────── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 48px;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer p {
+  font-family: 'Syne Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+}
+
+footer a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+footer a:hover { color: var(--accent); }
+
+/* ── ANIMATIONS ──────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.card { animation: fadeUp 0.5s ease both; }
+.card:nth-child(1) { animation-delay: 0.05s; }
+.card:nth-child(2) { animation-delay: 0.12s; }
+.card:nth-child(3) { animation-delay: 0.19s; }
+.card:nth-child(4) { animation-delay: 0.26s; }
+
+@media (max-width: 640px) {
+  header { grid-template-columns: 1fr; padding: 48px 24px 40px; }
+  .header-links { align-items: flex-start; }
+  .projects { padding: 24px; }
+  .nav-pills { padding: 16px 24px; }
+  footer { flex-direction: column; gap: 12px; text-align: center; padding: 24px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <h1>Ken<br>Sielecki<span>.</span></h1>
+    <p>BD & Partnerships professional building open-source tools for crypto and DeFi analysis. 20 years across TradFi, fintech, and web3.</p>
+  </div>
+  <div class="header-links">
+    <a href="https://linkedin.com/in/kensielecki">↗ LinkedIn</a>
+    <a href="https://github.com/kensielecki">↗ GitHub</a>
+    <a href="mailto:ken@jkmadvisory.com">↗ Email</a>
+  </div>
+</header>
+
+<div class="nav-pills">
+  <span class="pill active">All projects</span>
+  <span class="pill">DeFi Analytics</span>
+  <span class="pill">Automation</span>
+  <span class="pill">Data Pipelines</span>
+</div>
+
+<div class="projects">
+
+  <!-- Card 1 — DeFi Screener -->
+  <div class="card" style="--card-accent: #c8f060; grid-column: span 2;">
+    <div class="card-number">01 — 2025</div>
+    <div class="card-tag">DeFi Analytics</div>
+    <h2>DeFi Protocol Valuation Screener</h2>
+    <p>Applies equity valuation frameworks (P/E, P/S, EPS, earnings yield) across 25 DeFi protocols and 24 tech equities. Data from DefiLlama and Yahoo Finance. Daily data pipeline with historical charting.</p>
+
+    <div class="metrics">
+      <div class="metric">
+        <div class="metric-val">49</div>
+        <div class="metric-lbl">Assets</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val">12</div>
+        <div class="metric-lbl">Metrics</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val">365d</div>
+        <div class="metric-lbl">History</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val">Daily</div>
+        <div class="metric-lbl">Updated</div>
+      </div>
+    </div>
+
+    <div class="card-stack">
+      <span class="stack-item">Python</span>
+      <span class="stack-item">DefiLlama API</span>
+      <span class="stack-item">Yahoo Finance</span>
+      <span class="stack-item">CoinGecko</span>
+      <span class="stack-item">Plotly</span>
+      <span class="stack-item">openpyxl</span>
+    </div>
+
+    <div class="card-links">
+      <a href="#" class="card-link primary">
+        <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        View live charts
+      </a>
+      <a href="#" class="card-link">
+        <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        GitHub
+      </a>
+      <a href="#" class="card-link">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Methodology
+      </a>
+    </div>
+  </div>
+
+  <!-- Card 2 — Events Aggregator -->
+  <div class="card" style="--card-accent: #60c8f0;">
+    <div class="card-number">02 — 2025</div>
+    <div class="card-tag blue">Automation</div>
+    <h2>SF/Bay Area Crypto Events Aggregator</h2>
+    <p>Scrapes Luma, Eventbrite, and other sources for crypto, DeFi, and fintech events. Two-tier relevance scoring with Claude-powered re-ranking. Weekly digest via Telegram.</p>
+
+    <div class="card-stack">
+      <span class="stack-item">Python</span>
+      <span class="stack-item">Claude API</span>
+      <span class="stack-item">Luma</span>
+      <span class="stack-item">Eventbrite</span>
+      <span class="stack-item">launchd</span>
+    </div>
+
+    <div class="card-links">
+      <a href="#" class="card-link primary" style="background:rgba(96,200,240,0.1);border-color:rgba(96,200,240,0.25);color:var(--accent2);">
+        <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        View sample output
+      </a>
+      <a href="#" class="card-link">
+        <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+
+  <!-- Card 3 — Telegram Bot -->
+  <div class="card" style="--card-accent: #f0a060;">
+    <div class="card-number">03 — 2025</div>
+    <div class="card-tag orange">Automation</div>
+    <h2>Telegram BD Automation</h2>
+    <p>Flask + Telethon bulk messaging tool for BD outreach. Password-protected local web UI. Handles contact segmentation, message scheduling, and delivery tracking across Telegram channels.</p>
+
+    <div class="card-stack">
+      <span class="stack-item">Python</span>
+      <span class="stack-item">Flask</span>
+      <span class="stack-item">Telethon</span>
+      <span class="stack-item">Telegram API</span>
+    </div>
+
+    <div class="card-links">
+      <a href="#" class="card-link primary" style="background:rgba(240,160,96,0.1);border-color:rgba(240,160,96,0.25);color:var(--accent3);">
+        <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+
+  <!-- Card 4 — Yield Dashboard -->
+  <div class="card" style="--card-accent: #c8f060;">
+    <div class="card-number">04 — 2025</div>
+    <div class="card-tag">DeFi Analytics</div>
+    <h2>DeFi Yield Dashboard</h2>
+    <p>Fetches DefiLlama yield and lending data daily, diffs snapshots, and fires Telegram alerts on significant yield changes. Built on the same data pipeline as the valuation screener.</p>
+
+    <div class="card-stack">
+      <span class="stack-item">Python</span>
+      <span class="stack-item">DefiLlama</span>
+      <span class="stack-item">Telegram</span>
+      <span class="stack-item">launchd</span>
+    </div>
+
+    <div class="card-links">
+      <a href="#" class="card-link">
+        <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<div style="max-width:1100px;margin:0 auto;padding:0 48px 80px;">
+  <div style="border:1px solid var(--border);border-radius:16px;padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:40px;">
+    <div>
+      <div style="font-family:'Syne Mono',monospace;font-size:10px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:16px;">Background</div>
+      <p style="font-size:14px;color:var(--muted);line-height:1.7;">20 years in BD, Sales, and Partnerships across crypto, DeFi, fintech, and traditional finance. Previously at Bank of America Merrill Lynch, Zipmex, and Radix. Founded Blend, an on-chain institutional credit market.</p>
+    </div>
+    <div>
+      <div style="font-family:'Syne Mono',monospace;font-size:10px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:16px;">Focus areas</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <span style="font-family:'Syne Mono',monospace;font-size:11px;color:var(--muted);padding:4px 10px;border:1px solid var(--border);border-radius:4px;">DeFi fundamentals</span>
+        <span style="font-family:'Syne Mono',monospace;font-size:11px;color:var(--muted);padding:4px 10px;border:1px solid var(--border);border-radius:4px;">Protocol analysis</span>
+        <span style="font-family:'Syne Mono',monospace;font-size:11px;color:var(--muted);padding:4px 10px;border:1px solid var(--border);border-radius:4px;">Institutional crypto</span>
+        <span style="font-family:'Syne Mono',monospace;font-size:11px;color:var(--muted);padding:4px 10px;border:1px solid var(--border);border-radius:4px;">BD automation</span>
+        <span style="font-family:'Syne Mono',monospace;font-size:11px;color:var(--muted);padding:4px 10px;border:1px solid var(--border);border-radius:4px;">Perpetuals & options DEX</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>Ken Sielecki · San Francisco · 2026</p>
+  <div style="display:flex;gap:24px;">
+    <a href="https://linkedin.com/in/kensielecki">LinkedIn</a>
+    <a href="https://github.com/kensielecki">GitHub</a>
+    <a href="mailto:ken@jkmadvisory.com">Email</a>
+  </div>
+</footer>
+
+</body>
+</html>
