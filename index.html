@@ -455,6 +455,122 @@ header {
 
 .card-link.primary:hover { background: rgba(200,240,96,0.18); }
 
+/* ── TRAVEL FEATURE ──────────────────────── */
+.travel-feature {
+  display: block;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: border-color 0.25s, transform 0.25s;
+  position: relative;
+  background: var(--surface);
+}
+
+.travel-feature::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: #a060f0;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.travel-feature:hover { border-color: #3a3a34; transform: translateY(-2px); }
+.travel-feature:hover::before { opacity: 1; }
+
+.travel-feature-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.travel-feature-text {
+  padding: 36px;
+}
+
+.travel-feature-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.8px;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.travel-feature-title span { color: #a060f0; }
+
+.travel-feature-text p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.75;
+  margin-bottom: 12px;
+}
+
+.travel-feature-cta {
+  margin-top: 16px;
+  font-family: 'Syne Mono', monospace;
+  font-size: 12px;
+  color: #a060f0;
+  letter-spacing: 0.06em;
+}
+
+.travel-feature-img {
+  overflow: hidden;
+  border-left: 1px solid var(--border);
+}
+
+.travel-feature-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+
+/* ── FLOW DIAGRAM ─────────────────────────── */
+.flow-diagram {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+}
+
+.flow-col {
+  flex: 1;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 11px 13px;
+  min-width: 0;
+}
+
+.flow-col-claude { border-color: rgba(200,240,96,0.3); }
+.flow-col-output { border-color: rgba(96,200,240,0.2); }
+.flow-col-roadmap { border-color: rgba(240,160,96,0.2); flex: 0 0 auto; }
+
+.flow-arrow-wrap { flex-shrink: 0; display: flex; align-items: center; }
+
+.flow-label {
+  font-family: 'Syne Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+
+.flow-item {
+  font-size: 12px;
+  color: var(--text);
+  line-height: 1.65;
+}
+
 /* ── ABOUT ───────────────────────────────── */
 .about-grid {
   display: grid;
@@ -590,6 +706,12 @@ footer a:hover { color: var(--accent); }
   footer { flex-direction: column; gap: 12px; text-align: center; padding: 24px; }
   .timeline { grid-template-columns: 90px 1fr; }
   .nav-links { display: none; }
+  .travel-feature-inner { grid-template-columns: 1fr; }
+  .travel-feature-img { display: none; }
+  .flow-diagram { flex-wrap: wrap; }
+  .flow-col { flex: 1 1 40%; }
+  .flow-col-roadmap { flex: 1 1 40%; }
+  .flow-arrow-wrap { display: none; }
 }
 </style>
 </head>
@@ -673,71 +795,132 @@ footer a:hover { color: var(--accent); }
   </div>
 </div>
 
-<!-- ── OTHER TOOLS ───────────────────────────────────────────────── -->
+<!-- ── TRAVEL BOOKING OPTIMIZER ──────────────────────────────────── -->
+<div class="section-wrap" id="travel">
+  <div class="section-label">02 — Featured Project</div>
+  <a href="https://kensielecki.github.io/travel-booking-optimizer/" target="_blank" class="travel-feature">
+    <div class="travel-feature-inner">
+      <div class="travel-feature-text">
+        <div class="card-tag" style="background:rgba(160,96,240,0.1);color:#a060f0;border-color:rgba(160,96,240,0.2);display:inline-block;margin-bottom:14px;">Travel Tech</div>
+        <h2 class="travel-feature-title">Travel Booking <span>Optimizer</span></h2>
+        <p>Enter a trip in plain English — "Weekend in NYC, United + Hilton, ~$2k budget" — and the tool compares cash prices, points redemptions, transfer partner routes, and active card offers across United, Hilton, Amex MR, and Chase UR, then ranks the best booking path by total value.</p>
+        <p>A Chrome extension captures loyalty balances and live offers from your own browser session. Deterministic math handles valuation and ranking — no scraped credentials, no remote session replay.</p>
+        <div class="travel-feature-cta">View live demo ↗</div>
+      </div>
+      <div class="travel-feature-img">
+        <img src="travel-optimizer-screenshot.png" alt="Travel Booking Optimizer">
+      </div>
+    </div>
+  </a>
+</div>
+
+<!-- ── TOOLS & AUTOMATION ────────────────────────────────────────── -->
 <div class="section-wrap" id="tools">
-  <div class="section-label">02 — Tools & Automation</div>
+  <div class="section-label">03 — Tools & Automation</div>
 
   <div class="projects">
 
-    <div class="card" style="--card-accent:#60c8f0;">
-      <div class="card-number">02 — 2026</div>
+    <!-- Events Aggregator — full width -->
+    <div class="card" style="--card-accent:#60c8f0;grid-column:1/-1;">
+      <div class="card-number">03 — 2026</div>
       <div class="card-tag blue">Automation</div>
       <h3>SF/Bay Area Crypto Events Aggregator</h3>
-      <p>In crypto, most deals start with a conversation at an event. This tool scrapes Luma, Eventbrite, and Telegram channels for crypto, DeFi, and AI events across the Bay Area, runs a two-tier relevance filter to remove noise, then uses Claude to re-rank by quality and fit.</p>
-      <p>Runs weekly via launchd. Output delivered as a ranked digest to Telegram — no manual trawling through 8+ event sites. Saves roughly 2 hours of research per week.</p>
+      <p>Finding the right events in SF is a full-time job across six fragmented platforms. This tool scrapes Luma, Eventbrite, Meetup, AgendaHero, Cerebral Valley, and FinTech Week SF simultaneously, deduplicates the output, and feeds every event to Claude alongside a detailed profile of deal-relevant preferences — crypto, DeFi, AI agents, institutional finance, senior-level audiences. Claude scores each event 1–10 against that profile with reasoning, then outputs a ranked weekly digest delivered directly to Telegram. No manual trawling, no noise — just the ten events worth attending.</p>
+      <p>Roadmap: add Notion pages and Google Sheets as additional sources, so conference schedules and curated lists from contacts can feed the same pipeline.</p>
+
+      <div class="flow-diagram">
+        <div class="flow-col">
+          <div class="flow-label">Sources — Live</div>
+          <div class="flow-item">Luma</div>
+          <div class="flow-item">Eventbrite</div>
+          <div class="flow-item">Meetup</div>
+          <div class="flow-item">AgendaHero</div>
+          <div class="flow-item">Cerebral Valley</div>
+          <div class="flow-item">FinTech Week SF</div>
+        </div>
+        <div class="flow-col flow-col-roadmap">
+          <div class="flow-label" style="color:var(--accent3);">+ Roadmap</div>
+          <div class="flow-item">Notion pages</div>
+          <div class="flow-item">Google Sheets</div>
+        </div>
+        <div class="flow-arrow-wrap">
+          <svg width="32" height="20" viewBox="0 0 32 20"><line x1="0" y1="10" x2="25" y2="10" stroke="#3a3a34" stroke-width="1.5"/><polygon points="21,5 31,10 21,15" fill="#3a3a34"/></svg>
+        </div>
+        <div class="flow-col flow-col-claude">
+          <div class="flow-label" style="color:var(--accent);">Claude</div>
+          <div class="flow-item">Trained on your profile</div>
+          <div class="flow-item">1–10 relevance scoring</div>
+          <div class="flow-item">Reasoning per event</div>
+        </div>
+        <div class="flow-arrow-wrap">
+          <svg width="32" height="20" viewBox="0 0 32 20"><line x1="0" y1="10" x2="25" y2="10" stroke="#3a3a34" stroke-width="1.5"/><polygon points="21,5 31,10 21,15" fill="#3a3a34"/></svg>
+        </div>
+        <div class="flow-col flow-col-output">
+          <div class="flow-label">Weekly Output</div>
+          <div class="flow-item">Top 10 ranked events</div>
+          <div class="flow-item">Score + reasoning</div>
+          <div class="flow-item" style="color:var(--accent2);">→ Telegram digest</div>
+        </div>
+      </div>
 
       <div class="card-stack">
         <span class="stack-item">Python</span>
         <span class="stack-item">Claude API</span>
         <span class="stack-item">Luma</span>
         <span class="stack-item">Eventbrite</span>
-        <span class="stack-item">Telegram</span>
+        <span class="stack-item">Meetup</span>
         <span class="stack-item">launchd</span>
-      </div>
-
-      <div class="card-links">
-        <a href="https://github.com/kensielecki/events-aggregator" class="card-link primary" style="background:rgba(96,200,240,0.1);border-color:rgba(96,200,240,0.25);color:var(--accent2);">
-          <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
-          GitHub
-        </a>
       </div>
     </div>
 
-    <div class="card" style="--card-accent:#f0a060;">
-      <div class="card-number">03 — 2026</div>
-      <div class="card-tag orange">Automation</div>
-      <h3>Telegram BD Automation (tg-blast)</h3>
-      <p>Most crypto BD happens on Telegram. This tool handles the operational layer: bulk messaging to segmented contact lists, channel broadcasting, and delivery tracking — all through a password-protected local web UI so outreach can be managed without touching code.</p>
-      <p>Built for conference follow-up, partner outreach, and deal flow broadcasting. Operates on top of the Telegram MTProto API via Telethon so it uses your actual account, not a bot — messages land in DMs, not a channel from an unknown sender.</p>
+    <!-- TG + Gmail Intelligence — full width -->
+    <div class="card" style="--card-accent:#f0a060;grid-column:1/-1;">
+      <div class="card-number">04 — 2026</div>
+      <div class="card-tag orange">BD Automation</div>
+      <h3>Correspondence Intelligence — Telegram & Gmail</h3>
+      <p>Most crypto BD lives in two places: Telegram DMs and Gmail threads. These tools cover both ends. The Telegram module handles outbound — bulk messaging to segmented contact lists using your actual Telegram account via the MTProto API, with a password-protected local web UI for managing lists, scheduling sends, and tracking delivery without touching code. Built for conference follow-up, partner outreach, and deal flow broadcasting; messages land in DMs from your own account, not a bot.</p>
+      <p>The Gmail module handles inbound intelligence: it reads your email threads, extracts relationship context from past conversations, and surfaces Claude-drafted replies that match your tone and the thread history — so you can review, edit, and send without context-switching. Together they form a lightweight correspondence stack: outbound broadcast via Telegram, inbound triage and drafting across both channels.</p>
+
+      <div class="flow-diagram">
+        <div class="flow-col">
+          <div class="flow-label">Inputs</div>
+          <div class="flow-item">Telegram DMs</div>
+          <div class="flow-item">Telegram channels</div>
+          <div class="flow-item">Gmail threads</div>
+          <div class="flow-item">Contact history</div>
+        </div>
+        <div class="flow-arrow-wrap">
+          <svg width="32" height="20" viewBox="0 0 32 20"><line x1="0" y1="10" x2="25" y2="10" stroke="#3a3a34" stroke-width="1.5"/><polygon points="21,5 31,10 21,15" fill="#3a3a34"/></svg>
+        </div>
+        <div class="flow-col flow-col-claude">
+          <div class="flow-label" style="color:var(--accent);">Claude</div>
+          <div class="flow-item">Reads thread history</div>
+          <div class="flow-item">Matches tone & context</div>
+          <div class="flow-item">Drafts reply</div>
+        </div>
+        <div class="flow-arrow-wrap">
+          <svg width="32" height="20" viewBox="0 0 32 20"><line x1="0" y1="10" x2="25" y2="10" stroke="#3a3a34" stroke-width="1.5"/><polygon points="21,5 31,10 21,15" fill="#3a3a34"/></svg>
+        </div>
+        <div class="flow-col flow-col-output">
+          <div class="flow-label">Outbound</div>
+          <div class="flow-item">Review draft</div>
+          <div class="flow-item">Edit if needed</div>
+          <div class="flow-item" style="color:var(--accent3);">Send via TG or Gmail</div>
+        </div>
+      </div>
 
       <div class="card-stack">
         <span class="stack-item">Python</span>
         <span class="stack-item">Flask</span>
         <span class="stack-item">Telethon</span>
-        <span class="stack-item">Telegram API</span>
-        <span class="stack-item">HTTP Basic Auth</span>
-      </div>
-
-      <div class="card-links">
-        <a href="https://github.com/kensielecki/tg-blast" class="card-link primary" style="background:rgba(240,160,96,0.1);border-color:rgba(240,160,96,0.25);color:var(--accent3);">
-          <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
-          GitHub
-        </a>
+        <span class="stack-item">Gmail API</span>
+        <span class="stack-item">Claude API</span>
       </div>
     </div>
 
-    <a href="https://kensielecki.github.io/travel-booking-optimizer/" class="card card-screenshot" style="--card-accent:#a060f0;text-decoration:none;display:block;padding:0;overflow:hidden;" target="_blank">
-      <div class="card-screenshot-img">
-        <img src="travel-optimizer-screenshot.png" alt="Travel Booking Optimizer" style="width:100%;display:block;">
-      </div>
-      <div style="padding:20px 24px;">
-        <div class="card-tag" style="background:rgba(160,96,240,0.1);color:#a060f0;border-color:rgba(160,96,240,0.2);margin-bottom:8px;">Travel Tech</div>
-        <h3 style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;letter-spacing:-0.3px;color:var(--text);">Travel Booking Optimizer ↗</h3>
-      </div>
-    </a>
-
+    <!-- Yield Dashboard -->
     <div class="card" style="--card-accent:#c8f060;">
-      <div class="card-number">04 — 2026</div>
+      <div class="card-number">05 — 2026</div>
       <div class="card-tag">DeFi Analytics</div>
       <h3>DeFi Yield Dashboard & Alerts</h3>
       <p>Monitors lending rates and yield opportunities across DeFi via DefiLlama. Diffs daily snapshots and fires Telegram alerts when yields shift beyond a configurable threshold — so significant moves in Aave, Morpho, or Pendle don't go unnoticed.</p>
@@ -764,7 +947,7 @@ footer a:hover { color: var(--accent); }
 
 <!-- ── ABOUT ─────────────────────────────────────────────────────── -->
 <div class="section-wrap" id="about">
-  <div class="section-label">03 — About</div>
+  <div class="section-label">04 — About</div>
 
   <div class="about-grid">
     <div class="about-block">
