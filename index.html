@@ -238,6 +238,30 @@ header {
   line-height: 1.6;
 }
 
+/* ── SCREENER INTRO ──────────────────────── */
+.screener-intro {
+  margin-bottom: 40px;
+  max-width: 680px;
+}
+
+.screener-intro h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.8px;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.screener-intro h2 span { color: var(--accent); }
+
+.screener-intro p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.75;
+  margin-bottom: 16px;
+}
+
 /* ── IFRAME EMBED ────────────────────────── */
 .chart-embed-wrap {
   border: 1px solid var(--border);
@@ -601,44 +625,27 @@ footer a:hover { color: var(--accent); }
 <div class="section-wrap" id="screener">
   <div class="section-label">01 — Live Screener</div>
 
-  <div class="screener-hero">
-    <div class="screener-left">
-      <h2>DeFi Protocol<br>Valuation <span>Screener</span></h2>
-      <p>DeFi protocols generate real, auditable on-chain revenue. This screener asks a simple question: what would the market pay for that revenue if it came from a public company instead?</p>
-      <p>P/E, P/S, EPS, and dividend yield — computed across 25 DeFi protocols and 24 tech and fintech equities from the same data pipeline, updated daily. Hyperliquid next to NVDA. Aave next to COIN. The multiples speak for themselves.</p>
+  <div class="screener-intro">
+    <h2>DeFi Protocol<br>Valuation <span>Screener</span></h2>
+    <p>DeFi protocols generate real, auditable on-chain revenue. This screener asks a simple question: what would the market pay for that revenue if it came from a public company instead?</p>
+    <p>P/E, P/S, EPS, and dividend yield — computed across 25 DeFi protocols and 24 tech and fintech equities from the same data pipeline, updated daily. Hyperliquid next to NVDA. Aave next to COIN. The multiples speak for themselves.</p>
 
-      <div class="metrics-row">
-        <div class="metric">
-          <div class="metric-val">49</div>
-          <div class="metric-lbl">Assets</div>
-        </div>
-        <div class="metric">
-          <div class="metric-val">12</div>
-          <div class="metric-lbl">Metrics</div>
-        </div>
-        <div class="metric">
-          <div class="metric-val">365d</div>
-          <div class="metric-lbl">History</div>
-        </div>
-        <div class="metric">
-          <div class="metric-val">3</div>
-          <div class="metric-lbl">Sources</div>
-        </div>
+    <div class="metrics-row" style="margin-top:24px;max-width:480px;">
+      <div class="metric">
+        <div class="metric-val">49</div>
+        <div class="metric-lbl">Assets</div>
       </div>
-    </div>
-
-    <div class="screener-right">
-      <div class="screener-right-item">
-        <h4>Revenue</h4>
-        <p>DeFi uses DefiLlama Protocol Revenue — the protocol's cut after paying liquidity providers, annualised from a 30-day rolling window. Equity uses Yahoo Finance Total Revenue TTM. Same column in the table, different denominators — documented in the methodology.</p>
+      <div class="metric">
+        <div class="metric-val">12</div>
+        <div class="metric-lbl">Metrics</div>
       </div>
-      <div class="screener-right-item">
-        <h4>Earnings & P/E</h4>
-        <p>DeFi Earnings = Protocol Revenue minus token incentives (the equivalent of customer acquisition cost). This is what DefiLlama calls "earnings" and what Token Terminal uses for P/E. Identical formula to equity net income divided by market cap.</p>
+      <div class="metric">
+        <div class="metric-val">365d</div>
+        <div class="metric-lbl">History</div>
       </div>
-      <div class="screener-right-item">
-        <h4>Div / Holder Yield</h4>
-        <p>DeFi: annualised holder revenue divided by market cap — includes fee buybacks, burns, and direct staking distributions. Hyperliquid's 8% is a buyback yield; GMX's 17% is paid in ETH. Equity: trailing 12-month cash dividend yield from Yahoo Finance.</p>
+      <div class="metric">
+        <div class="metric-val">3</div>
+        <div class="metric-lbl">Sources</div>
       </div>
     </div>
   </div>
@@ -650,8 +657,8 @@ footer a:hover { color: var(--accent); }
         <div class="live-dot"></div>
         Live charts — updated daily at 08:00 UTC
       </div>
-      <a href="https://kensielecki.github.io/protocol-valuation-screener/charts.html" class="chart-embed-link" target="_blank">
-        Open full dashboard ↗
+      <a href="https://kensielecki.github.io/protocol-valuation-screener/" class="chart-embed-link" target="_blank">
+        View full project ↗
       </a>
     </div>
     <iframe
@@ -719,32 +726,15 @@ footer a:hover { color: var(--accent); }
       </div>
     </div>
 
-    <div class="card" style="--card-accent:#a060f0;">
-      <div class="card-number">05 — 2026</div>
-      <div class="card-tag" style="background:rgba(160,96,240,0.1);color:#a060f0;border-color:rgba(160,96,240,0.2);">Travel Tech</div>
-      <h3>Travel Booking Optimizer</h3>
-      <p>Enter a trip in plain English — "Weekend in NYC, United + Hilton, ~$2k budget" — and the tool compares cash prices, points redemptions, transfer partner routes, and active card offers across United, Hilton, Amex MR, and Chase UR, then ranks the best booking path by total value.</p>
-      <p>A Chrome extension captures loyalty balances and live offers from your own browser session. Deterministic math handles valuation and ranking; no scraped credentials, no remote session replay.</p>
-
-      <div class="card-stack">
-        <span class="stack-item">Next.js</span>
-        <span class="stack-item">FastAPI</span>
-        <span class="stack-item">Supabase</span>
-        <span class="stack-item">Chrome Extension</span>
-        <span class="stack-item">OpenAI Codex</span>
+    <a href="https://kensielecki.github.io/travel-booking-optimizer/" class="card card-screenshot" style="--card-accent:#a060f0;text-decoration:none;display:block;padding:0;overflow:hidden;" target="_blank">
+      <div class="card-screenshot-img">
+        <img src="travel-optimizer-screenshot.png" alt="Travel Booking Optimizer" style="width:100%;display:block;">
       </div>
-
-      <div class="card-links">
-        <a href="https://kensielecki.github.io/travel-booking-optimizer/" class="card-link primary" style="background:rgba(160,96,240,0.1);border-color:rgba(160,96,240,0.25);color:#a060f0;" target="_blank">
-          <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Live demo
-        </a>
-        <a href="https://github.com/kensielecki/travel-booking-optimizer" class="card-link" target="_blank">
-          <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
-          GitHub
-        </a>
+      <div style="padding:20px 24px;">
+        <div class="card-tag" style="background:rgba(160,96,240,0.1);color:#a060f0;border-color:rgba(160,96,240,0.2);margin-bottom:8px;">Travel Tech</div>
+        <h3 style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;letter-spacing:-0.3px;color:var(--text);">Travel Booking Optimizer ↗</h3>
       </div>
-    </div>
+    </a>
 
     <div class="card" style="--card-accent:#c8f060;">
       <div class="card-number">04 — 2026</div>
